@@ -10,4 +10,4 @@ role_name            = "n8n-ec2-role"
 instance_name        = "n8n-ec2"
 alb_name             = "n8n-alb"
 domain_name          = "fittmeal.work.gd"
-openai_api_key       = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+openai_api_key       = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"git 
