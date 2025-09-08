@@ -1,0 +1,137 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "openai-webhook",
+        "options": {}
+      },
+      "id": "8b09dcd9-0072-44d4-95ee-834bb3d1f39b",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "2bf4959b-6971-4c66-a8c7-ebf5ef7f1bed"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "question",
+              "value": "={{ $json.body.message }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1b42d8c1-0945-402a-99cf-b544c5c66bd2",
+      "name": "Set Input",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseKey": "={{ $json.message.content }}"
+        }
+      },
+      "id": "7a1f9d29-b74e-43fc-a682-3c1cbe6611f0",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        608,
+        0
+      ],
+      "alwaysOutputData": false,
+      "executeOnce": false,
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "model": "gpt-4o-mini",
+        "prompt": {
+          "messages": [
+            {
+              "content": "={{ $json.question }}"
+            }
+          ]
+        },
+        "options": {},
+        "requestOptions": {}
+      },
+      "id": "99c07266-6e97-47cd-be20-20ee1657b97d",
+      "name": "Create a Completion",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        400,
+        0
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "nxKjhZJf2gnf8MVw",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Input": {
+      "main": [
+        [
+          {
+            "node": "Create a Completion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a Completion": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "4ca4c5cc-1665-4bd1-b8c8-aa48d6404596",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e911acbdc3ec02244db1a0c18e744cecb684bca45aa3eb363463031781e19e8a"
+  },
+  "id": "3zmxyGfMKi5t6ez7",
+  "tags": []
+}
