@@ -1,0 +1,13 @@
+aws_region           = "ap-south-1"
+vpc_name             = "fitt-vpc"
+vpc_cidr             = "10.0.0.0/16"
+public_subnet_cidrs  = ["10.0.1.0/24", "10.0.2.0/24"]
+availability_zones   = ["ap-south-1a", "ap-south-1b"]
+sg_name              = "n8n-sg"
+ami_id               = "ami-0861f4e788f5069dd"
+instance_type        = "t2.micro"
+role_name            = "n8n-ec2-role"
+instance_name        = "n8n-ec2"
+alb_name             = "n8n-alb"
+domain_name          = "fittmeal.work.gd"
+openai_api_key       = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"

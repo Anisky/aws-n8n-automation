@@ -16,7 +16,7 @@ override.tf.json
 *.tfplan
 
 # Sensitive variable files
-*.tfvars
+
 *.tfvars.json
 terraform.tfvars
 variables.auto.tfvars
